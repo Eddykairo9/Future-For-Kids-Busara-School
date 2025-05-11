@@ -1,4 +1,3 @@
-'use client';
 
 import type { Program, NavItem, NewsArticle, Testimonial } from '@/types';
 // Icon components are no longer directly used here for navLinks, only their names.
@@ -143,3 +142,4 @@ export const testimonialsData: Testimonial[] = [
   }
 ];
 
+```
