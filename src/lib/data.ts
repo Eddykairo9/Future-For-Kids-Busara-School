@@ -141,5 +141,3 @@ export const testimonialsData: Testimonial[] = [
     imageHint: 'boy happy'
   }
 ];
-
-```
