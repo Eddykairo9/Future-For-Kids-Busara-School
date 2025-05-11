@@ -17,6 +17,7 @@ import { ChevronDown, type LucideIcon } from 'lucide-react';
 import type { NavItem } from '@/types';
 import { cn } from '@/lib/utils';
 import * as LucideIcons from 'lucide-react';
+import { ThemeToggleButton } from '@/components/theme/ThemeToggleButton';
 
 // Helper to get icon component by name
 const getIcon = (iconName?: string): LucideIcon | null => {
@@ -76,6 +77,7 @@ export function Header() {
           })}
         </nav>
         <div className="flex items-center gap-2">
+          <ThemeToggleButton />
           <Button variant="default" asChild className="hidden sm:inline-flex bg-primary hover:bg-primary/90 text-primary-foreground">
             <Link href="/contact#donate">Donate</Link>
           </Button>
