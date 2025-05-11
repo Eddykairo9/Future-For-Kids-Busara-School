@@ -1,9 +1,9 @@
-
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Handshake, Heart, BookOpen } from 'lucide-react';
+import { Handshake, Heart, BookOpen, UsersRound, Goal, CalendarCheck, Wrench, type LucideProps } from 'lucide-react';
+import type { ComponentType } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 export const metadata: Metadata = {
@@ -11,12 +11,33 @@ export const metadata: Metadata = {
   description: 'Join our team of dedicated volunteers and make a difference in the lives of children at Future For Kids Busara School.',
 };
 
-const volunteerOpportunities = [
-  { title: 'Classroom Assistant', description: 'Support teachers in daily activities, assist students with learning, and help prepare materials.', icon: BookOpen, imageHint: "teacher assistant classroom" },
-  { title: 'Mentorship Program', description: 'Guide and inspire students by sharing your experiences and skills.', icon: UsersRound, imageHint: "mentor student discussion" }, // Assuming UsersRound is available or replaced
-  { title: 'Sports Coaching', description: 'Help coach our sports teams and promote physical fitness.', icon: Goal, imageHint: "sports coach kids" }, // Assuming Goal is available
-  { title: 'Event Support', description: 'Assist with organizing and running school events and fundraisers.', icon: CalendarCheck, imageHint: "event planning volunteer" }, // Assuming CalendarCheck is available
-  { title: 'Skill-Based Volunteering', description: 'Offer your professional skills (e.g., IT, marketing, arts) to support school operations.', icon: Wrench, imageHint: "professional skills workshop" }, // Assuming Wrench is available
+// Define a type for our icon map
+type IconMapType = {
+  [key: string]: ComponentType<LucideProps>;
+};
+
+// Map of icon names to components
+const iconMap: IconMapType = {
+  BookOpen,
+  UsersRound,
+  Goal,
+  CalendarCheck,
+  Wrench,
+};
+
+interface VolunteerOpportunityItem {
+  title: string;
+  description: string;
+  iconName: keyof typeof iconMap;
+  imageHint: string;
+}
+
+const volunteerOpportunities: VolunteerOpportunityItem[] = [
+  { title: 'Classroom Assistant', description: 'Support teachers in daily activities, assist students with learning, and help prepare materials.', iconName: 'BookOpen', imageHint: "teacher assistant classroom" },
+  { title: 'Mentorship Program', description: 'Guide and inspire students by sharing your experiences and skills.', iconName: 'UsersRound', imageHint: "mentor student discussion" },
+  { title: 'Sports Coaching', description: 'Help coach our sports teams and promote physical fitness.', iconName: 'Goal', imageHint: "sports coach kids" },
+  { title: 'Event Support', description: 'Assist with organizing and running school events and fundraisers.', iconName: 'CalendarCheck', imageHint: "event planning volunteer" },
+  { title: 'Skill-Based Volunteering', description: 'Offer your professional skills (e.g., IT, marketing, arts) to support school operations.', iconName: 'Wrench', imageHint: "professional skills workshop" },
 ];
 
 
@@ -65,12 +86,12 @@ export default function VolunteersPage() {
           <h2 className="text-3xl font-semibold text-center mb-10">Volunteer Opportunities</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {volunteerOpportunities.map((op) => {
-              const IconComponent = op.icon; // Assuming op.icon is a valid Lucide icon component
+              const IconComponent = iconMap[op.iconName]; 
               return (
                 <Card key={op.title} className="flex flex-col items-center text-center shadow-md hover:shadow-lg transition-shadow">
                    <CardHeader>
                     <div className="mx-auto bg-primary/10 text-primary p-3 rounded-full w-fit mb-3">
-                        <IconComponent className="h-8 w-8" />
+                        {IconComponent && <IconComponent className="h-8 w-8" />}
                     </div>
                     <CardTitle>{op.title}</CardTitle>
                   </CardHeader>
@@ -106,10 +127,3 @@ export default function VolunteersPage() {
     </div>
   );
 }
-
-// Placeholder Lucide icons for compile-time safety if not all are used/available
-// These would ideally be correctly imported from lucide-react
-const UsersRound = Heart; 
-const Goal = Heart;
-const CalendarCheck = Heart;
-const Wrench = Heart;
