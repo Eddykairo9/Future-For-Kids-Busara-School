@@ -1,5 +1,6 @@
+
 import Link from 'next/link';
-import { HeartHandshake } from 'lucide-react'; // Or any other suitable icon
+import { HeartHandshake } from 'lucide-react'; 
 
 export function Logo() {
   return (

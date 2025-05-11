@@ -1,3 +1,4 @@
+
 import { ContactForm } from '@/components/forms/ContactForm';
 import { Metadata } from 'next';
 import { Mail, Phone, MapPin, DollarSign, Heart } from 'lucide-react';
@@ -50,6 +51,9 @@ export default function ContactPage() {
               <p>
                 For partnership opportunities: <a href="mailto:partnerships@futureforkidsbusara.org" className="text-primary hover:underline">partnerships@futureforkidsbusara.org</a>
               </p>
+              <p>
+                For volunteer inquiries: <a href="mailto:volunteer@futureforkidsbusara.org" className="text-primary hover:underline">volunteer@futureforkidsbusara.org</a>
+              </p>
             </CardContent>
           </Card>
            <Card className="shadow-lg">
@@ -83,7 +87,7 @@ export default function ContactPage() {
           Share your skills and passion to make a difference in children&apos;s lives. We have various volunteering opportunities available.
         </p>
         <Button size="lg" asChild variant="outline" className="border-secondary text-secondary hover:bg-secondary/5 hover:text-secondary">
-          <Link href="#">Learn About Volunteering</Link>
+          <Link href="/volunteers">Learn About Volunteering</Link>
         </Button>
       </section>
     </div>

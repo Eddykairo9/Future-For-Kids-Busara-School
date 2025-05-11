@@ -1,20 +1,39 @@
 
 import type { Program, NavItem, NewsArticle, Testimonial } from '@/types';
-// Icon components are no longer directly used here for navLinks, only their names.
 
 export const navLinks: NavItem[] = [
   { href: '/', label: 'Home', icon: 'Home' },
-  { href: '/programs', label: 'Programs', icon: 'BookOpen' },
-  { href: '/news', label: 'News', icon: 'Newspaper' },
-  { href: '/impact', label: 'Testimonials', icon: 'Star' },
-  { href: '/contact', label: 'Contact Us', icon: 'Send' },
+  {
+    href: '/about', // Main link for "About" parent item
+    label: 'About',
+    icon: 'Users',
+    basePathForHighlight: '/about',
+    children: [
+      { href: '/about', label: 'About Us', icon: 'Info' }, // Icon for sub-item
+      { href: '/about/history', label: 'History', icon: 'ScrollText' },
+      { href: '/about/our-staff', label: 'Our Staff', icon: 'UsersRound' },
+    ],
+  },
+  {
+    href: '/programs', // Main link for "Programs" parent item
+    label: 'Programs',
+    icon: 'BookOpenText',
+    basePathForHighlight: '/programs',
+    children: [
+      { href: '/programs', label: 'Our Curriculum', icon: 'ClipboardCheck' }, // Icon for sub-item
+      { href: '/programs/sports-and-activities', label: 'Sports & Activities', icon: 'Goal' },
+      { href: '/programs/clubs-and-trips', label: 'Clubs & Trips', icon: 'Plane' },
+    ],
+  },
+  { href: '/volunteers', label: 'Volunteers', icon: 'Handshake' },
+  { href: '/contact', label: 'Contact Us', icon: 'Mail' },
   { href: '/ai-suggestions', label: 'AI Content Tools', icon: 'Lightbulb' },
 ];
 
 export const programsData: Program[] = [
   {
     id: '1',
-    title: 'Early Childhood Education at Future For Kids',
+    title: 'Early Childhood Education at Future For Kids Busara School',
     description: 'Fostering foundational skills and a love for learning in young children through play-based activities and interactive lessons at Future For Kids Busara School.',
     imageUrl: 'https://picsum.photos/seed/program1/600/400',
     imageHint: 'children learning',
@@ -22,7 +41,7 @@ export const programsData: Program[] = [
   },
   {
     id: '2',
-    title: 'Youth Empowerment Workshops by Busara School',
+    title: 'Youth Empowerment Workshops by Future For Kids Busara School',
     description: 'Equipping teenagers with leadership skills, critical thinking abilities, and vocational training for a successful transition to adulthood, facilitated by Future For Kids Busara School.',
     imageUrl: 'https://picsum.photos/seed/program2/600/400',
     imageHint: 'teenagers workshop',

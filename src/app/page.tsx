@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { HeroSection } from '@/components/sections/HeroSection';
@@ -117,7 +118,7 @@ export default function Home() {
               <Link href="/contact#donate">Donate Now</Link>
             </Button>
             <Button size="lg" asChild variant="secondary" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
-              <Link href="/contact#volunteer">Volunteer</Link>
+              <Link href="/volunteers">Volunteer</Link>
             </Button>
           </div>
         </div>

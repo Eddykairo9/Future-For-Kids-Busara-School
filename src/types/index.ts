@@ -18,9 +18,11 @@ export interface GalleryMedia {
 }
 
 export interface NavItem {
-  href: string;
+  href: string; // Parent items that are only triggers can use "#" or a base path
   label: string;
-  icon?: string; // Changed from React.ComponentType to string
+  icon?: string;
+  children?: NavItem[]; // For sub-menus
+  basePathForHighlight?: string; // Optional: For highlighting parent if href is "#"
 }
 
 export interface NewsArticle {
@@ -31,16 +33,15 @@ export interface NewsArticle {
   imageUrl: string;
   imageHint?: string;
   summary: string;
-  slug: string; // Changed from id for routing to be more SEO friendly
-  content: string; // Full content for the individual page
+  slug: string;
+  content: string; 
 }
 
 export interface Testimonial {
   id: string;
   name: string;
-  role: string; // e.g., "Student, Grade 5" or "Parent"
+  role: string; 
   testimonial: string;
   imageUrl: string;
   imageHint?: string;
 }
-

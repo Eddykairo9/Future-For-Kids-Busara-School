@@ -1,8 +1,16 @@
+
 import Link from 'next/link';
 import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 import { Logo } from './Logo';
+import { navLinks } from '@/lib/data'; // Import navLinks to dynamically generate some links
 
 export function Footer() {
+  // Filter for top-level navigation items to display in footer, excluding Home
+  const footerLinks = navLinks.filter(link => link.href !== '/' && !link.children);
+  const aboutParentLink = navLinks.find(link => link.label === 'About');
+  const programsParentLink = navLinks.find(link => link.label === 'Programs');
+
+
   return (
     <footer className="border-t bg-muted/50">
       <div className="container mx-auto px-4 py-8">
@@ -16,10 +24,21 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
             <ul className="space-y-1">
-              <li><Link href="/programs" className="text-sm text-muted-foreground hover:text-primary transition-colors">Our Programs</Link></li>
+              {aboutParentLink && (
+                 <li><Link href={aboutParentLink.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">{aboutParentLink.label}</Link></li>
+              )}
+              {programsParentLink && (
+                 <li><Link href={programsParentLink.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">{programsParentLink.label}</Link></li>
+              )}
+              {footerLinks.map(link => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
               <li><Link href="/news" className="text-sm text-muted-foreground hover:text-primary transition-colors">News</Link></li>
               <li><Link href="/impact" className="text-sm text-muted-foreground hover:text-primary transition-colors">Testimonials</Link></li>
-              <li><Link href="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">Contact Us</Link></li>
               <li><Link href="/contact#donate" className="text-sm text-muted-foreground hover:text-primary transition-colors">Donate</Link></li>
             </ul>
           </div>
